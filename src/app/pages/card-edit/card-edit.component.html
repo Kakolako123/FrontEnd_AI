@@ -1,0 +1,53 @@
+<div class="edit-container">
+  <div class="edit-card">
+    <h2>Créer votre carte d'étudiant</h2>
+    
+    <div class="template-container">
+        <button class="scroll-button scroll-left" (click)="scrollLeft()">
+            ←
+        </button>
+        <div class="template-display" #templateContainer>
+            <div *ngFor="let template of templates" 
+                 class="template-item"
+                 [class.active]="template.id === selectedCardId"
+                 (click)="selectTemplate(template.id)">
+                <div class="template-preview">
+                    <img [src]="template.frontImage" [alt]="template.name" class="template-thumbnail" style="margin: 0 auto;">
+                </div>
+            </div>
+        </div>
+        <button class="scroll-button scroll-right" (click)="scrollRight()">
+            →
+        </button>
+    </div>
+
+    <div class="form-section">
+      <h3>Prévisualisation de la carte</h3>
+      <div class="cards-container">
+        <div class="card-preview">
+          <div class="card-label">Recto</div>
+          <img [src]="getActiveTemplate().frontImage" 
+               [alt]="getActiveTemplate().name + ' recto'" 
+               class="card-background">
+        </div>
+        <div class="card-preview">
+          <div class="card-label">Verso</div>
+          <img [src]="getActiveTemplate().backImage" 
+               [alt]="getActiveTemplate().name + ' verso'" 
+               class="card-background">
+        </div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button (click)="editInCanva()" class="btn-edit">
+        <i class="fas fa-pencil-alt"></i>
+        Modifier sur Canva
+      </button>
+      <button (click)="cancel()" class="btn-cancel">
+        <i class="fas fa-arrow-left"></i>
+        Retour
+      </button>
+    </div>
+  </div>
+</div>

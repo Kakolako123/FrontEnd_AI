@@ -1,0 +1,46 @@
+.features-section {
+  background-color: #2b14e0;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.features-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.features-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.features-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  max-width: 300px;
+}
+
+.feature img {
+  width: 160px;
+  height: auto;
+}
+
+.feature p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}

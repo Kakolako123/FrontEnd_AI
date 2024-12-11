@@ -1,0 +1,67 @@
+<div class="id-card">
+  <div class="id-card-header">
+    <div class="logo">
+      <img src="assets/imgs/logo-removebg-preview.png" alt="Logo">
+    </div>
+    <div class="title">
+      <h2>CARTE D'IDENTITÉ</h2>
+      <p class="id-number">{{ user.identifiant__c }}</p>
+    </div>
+  </div>
+
+  <div class="id-card-body">
+    <div class="photo-section">
+      <div class="user-photo" [class.no-image]="!user.Image_URL__c">
+        <img *ngIf="user.Image_URL__c" [src]="user.Image_URL__c" [alt]="user.nom__c + ' ' + user.prenom__c">
+        <span *ngIf="!user.Image_URL__c" class="initials">
+          {{ getInitials(user.nom__c, user.prenom__c) }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-row">
+        <span class="label">Nom:</span>
+        <span class="value">{{ user.nom__c }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Prénom:</span>
+        <span class="value">{{ user.prenom__c }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Sexe:</span>
+        <span class="value">{{ user.sexe__c }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Date de naissance:</span>
+        <span class="value">{{ formatDate(user.date_naissance__c) }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Adresse:</span>
+        <span class="value">{{ user.adresse__c }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Continent:</span>
+        <span class="value">{{ user.continent__c }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Locale:</span>
+        <span class="value">{{ user.locale__c }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="id-card-footer">
+    <div class="validity">
+      <span class="label">Valide jusqu'au:</span>
+      <span class="value">{{ formatDate(user.date_validite__c) }}</span>
+    </div>
+    <div class="barcode">
+      <!-- Placeholder pour un futur code-barres -->
+      {{ user.Id }}
+    </div>
+  </div>
+</div>
+<button class="export-pdf-btn" (click)="exportToPDF()">
+  📄 Exporter en PDF
+</button>

@@ -1,0 +1,44 @@
+<div class="container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Catégories</h3>
+    <ul>
+      <li *ngFor="let category of categories"
+          [class.active]="category === selectedCategory"
+          (click)="selectCategory(category)">
+        {{ category }}
+      </li>
+      <li (click)="goToAccueil()">Accueil</li>
+      <li (click)="goToCardEdit()">Éditer une carte</li>
+      <li (click)="goToSalesforceTest()">Test Salesforce</li>
+      <li (click)="goToApiDocumentation()">Documentation API</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2>Designs disponibles</h2>
+    <div class="card-grid">
+      <div class="flip-card" *ngFor="let design of filteredDesigns" (click)="editCard(design)">
+        <div class="flip-card-inner">
+          <!-- Front face -->
+          <div class="flip-card-front">
+            <span class="category-badge">{{ design.category }}</span>
+            <img [src]="design.image" [alt]="design.name">
+            <div class="card-content">
+              <h3>{{ design.name }}</h3>
+            </div>
+          </div>
+          <!-- Back face -->
+          <div class="flip-card-back">
+            <span class="category-badge">{{ design.category }}</span>
+            <img [src]="design.image.replace('.1.PNG', '.2.PNG')" [alt]="design.name">
+            <div class="card-content">
+              <h3>{{ design.name }}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

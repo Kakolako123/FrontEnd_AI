@@ -1,0 +1,21 @@
+{
+  "/services/apexrest/*": {
+    "target": "https://ensa37-dev-ed.develop.my.salesforce.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/services/apexrest": "/services/apexrest"
+    },
+    "headers": {
+      "Connection": "keep-alive",
+      "Accept": "application/json"
+    },
+    "onProxyReq": function(proxyReq, req, res) {
+      console.log('Proxy request:', req.method, req.url);
+    },
+    "onProxyRes": function(proxyRes, req, res) {
+      console.log('Proxy response status:', proxyRes.statusCode);
+    }
+  }
+}

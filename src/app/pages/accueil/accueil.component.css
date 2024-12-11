@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+/* Header Start */
+header {
+  height: 100vh;
+  background: url('../../../assets/imgs/photo2.jpg') center center/cover no-repeat;
+  position: relative;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.body {
+  font-family: "Quicksand", sans-serif;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  position: relative;
+  z-index: 10; /* Assure que la navbar reste au-dessus */
+}
+
+#navbar img {
+  width: 80px;
+  margin-left: 100px;
+}
+
+nav ul {
+  display: flex;
+  margin-right: 100px;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 20px;
+  font-weight: 600;
+  transition: border-bottom 0.3s ease;
+}
+
+nav ul li a:hover {
+  border-bottom: 2px solid #2b14e0;
+}
+
+header .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75%;
+  text-align: center;
+  position: relative;
+  z-index: 10; /* Assure que le contenu est au-dessus du fond */
+}
+
+header::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6); /* Ajoute une superposition sombre */
+  z-index: 1;
+}
+
+header .content h1 {
+  font-size: 40px;
+  color: #fff;
+  margin: 0;
+}
+
+header .content p {
+  color: #fff;
+  margin: 20px 0 40px;
+  font-size: 18px;
+}
+
+header .content .btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #371aef;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+header .content .btn:hover {
+  background-color: #2b14e0;
+}
+/* Header End */
+
+/* Section Styling */
+section {
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: center;
+  background: #f4f2ed;
+}
+
+section .content {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: 170px; /* Ajustez la valeur selon vos besoins */
+}
+
+
+section .text {
+  flex: 1;
+  padding: 1rem;
+}
+
+section .text h2 {
+  font-size: 2.5rem;
+  color: #0a58ca; /* Couleur professionnelle bleu */
+  margin-bottom: 1rem;
+  border-bottom: 3px solid #5b53e3; /* Ligne décorative */
+  display: inline-block;
+}
+
+section .text p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+section .image {
+  flex: 1;
+  position: relative; /* Position relative pour placer les décorations */
+}
+
+section .image img {
+  width: 60%;
+  max-width: 500px;
+  transition: transform 0.3s ease-in-out; /* Animation au survol */
+  position: relative;
+  z-index: 1;
+}
+
+section .image img:hover {
+  transform: scale(1.05); /* Zoom au survol */
+}
+
+section .image::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle at top right, #0a58ca 20%, transparent 60%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+section .image::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: -30px;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle at bottom left, #8587ec 20%, transparent 60%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  section .content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  section .image img {
+    max-width: 80%;
+    clip-path: ellipse(80% 70% at 50% 50%); /* Ajuste la forme pour les écrans plus petits */
+  }
+
+  section .image::before,
+  section .image::after {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.section-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}

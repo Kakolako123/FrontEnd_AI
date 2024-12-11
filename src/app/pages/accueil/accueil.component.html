@@ -1,0 +1,91 @@
+<style>
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.logo-container {
+  width: 200px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 15px;
+}
+
+.logo-container img {
+  width: 500%;
+  height: 500%;
+  object-fit: contain;
+  transform: scale(4);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+}
+
+nav ul li a:hover {
+  opacity: 0.8;
+}
+</style>
+
+<body>
+<header>
+  <div id="navbar">
+    <div class="logo-container">
+      <img src="assets/imgs/logo-removebg-preview.png" alt="Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="content">
+    <h1>MAKING ID CARDS HAS NEVER BEEN EASIER!</h1>
+    <p>Create Professional and high-quality ID Badges in a matter of minutes with our easy to use Badge Maker!</p>
+    <button type="button" class="btn" (click)="onLink()">Open Badge Maker</button>
+  </div>
+</header>
+<!-- Section Our Mission -->
+<section class="our-mission">
+  <div class="content">
+    <div class="text">
+      <h2>Our Mission</h2>
+      <p>
+        There's this notion that to grow a business, you have to be ruthless.
+        But we know there's a better way to grow. One where what's good for the
+        bottom line is also good for customers. We believe businesses can grow
+        with a conscience and succeed with a soul – and that they can do it with
+        inbound. That's why we've created an ecosystem using software, education,
+        and community to help businesses grow better every day.
+      </p>
+    </div>
+    <div class="image">
+      <img src="assets/imgs/photoo3.jpg" alt="Mission Image">
+    </div>
+  </div>
+</section>
+<app-features-section></app-features-section>
+<app-card-examples></app-card-examples>
+<app-avis></app-avis>
+<app-contact></app-contact>
+</body>

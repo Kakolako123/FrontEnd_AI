@@ -1,0 +1,205 @@
+/* Conteneur principal */
+.container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Barre latérale */
+.sidebar {
+  width: 280px;
+  padding: 25px;
+  background: #2D31FA;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  color: white;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar h3 {
+  margin-bottom: 25px;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 12px 18px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.sidebar li.active {
+  background: white;
+  color: #2D31FA;
+}
+
+/* Contenu principal */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  margin-left: 280px;
+  background: #f8f9fa;
+}
+
+.main-content h2 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* Grid pour les cartes */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Style des cartes */
+.flip-card {
+  background-color: transparent;
+  height: 400px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(45, 49, 250, 0.1);
+}
+
+.flip-card-front {
+  border: 1px solid rgba(45, 49, 250, 0.1);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  border: 1px solid rgba(45, 49, 250, 0.1);
+}
+
+.flip-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.card-content {
+  padding: 20px;
+  background: white;
+}
+
+.card-content h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.flip-card-back .card-content h3 {
+  color: #fff;
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.category-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #2D31FA;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(45, 49, 250, 0.2);
+  z-index: 1;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 20px;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

@@ -1,0 +1,88 @@
+<div class="container">
+  <h2>Gestion des Utilisateurs Salesforce</h2>
+  
+  <div class="actions">
+    <div class="view-toggle">
+      <button 
+        [class.active]="viewMode === 'table'"
+        (click)="viewMode = 'table'" 
+        class="view-btn">
+        📋 Vue Tableau
+      </button>
+      <button 
+        [class.active]="viewMode === 'cards'"
+        (click)="viewMode = 'cards'" 
+        class="view-btn">
+        💳 Vue Cartes
+      </button>
+    </div>
+    <button (click)="loadUsers()" [disabled]="isLoading" class="action-btn">
+      {{ isLoading ? 'Chargement...' : 'Actualiser les données' }}
+    </button>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <h3>Erreur:</h3>
+    <p>{{ errorMessage }}</p>
+    <div *ngIf="detailedError">
+      <pre>{{ detailedError }}</pre>
+    </div>
+  </div>
+
+  <!-- Vue Tableau -->
+  <div *ngIf="!error && users.length > 0 && viewMode === 'table'" class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Sexe</th>
+          <th>Date de naissance</th>
+          <th>Identifiant</th>
+          <th>Adresse</th>
+          <th>Continent</th>
+          <th>Locale</th>
+          <th>Date de validité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td class="user-photo">
+            <div class="photo-container" [class.no-image]="!user.Image_URL__c">
+              <img *ngIf="user.Image_URL__c" [src]="user.Image_URL__c" [alt]="user.nom__c">
+              <span *ngIf="!user.Image_URL__c" class="initials">
+                {{ getInitials(user.nom__c, user.prenom__c) }}
+              </span>
+            </div>
+          </td>
+          <td>{{ user.nom__c }}</td>
+          <td>{{ user.prenom__c }}</td>
+          <td>{{ user.sexe__c }}</td>
+          <td>{{ formatDate(user.date_naissance__c) }}</td>
+          <td>{{ user.identifiant__c }}</td>
+          <td>{{ user.adresse__c }}</td>
+          <td>{{ user.continent__c }}</td>
+          <td>{{ user.locale__c }}</td>
+          <td>{{ formatDate(user.date_validite__c) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Vue Cartes -->
+  <div *ngIf="!error && users.length > 0 && viewMode === 'cards'" class="cards-container">
+    <app-id-card *ngFor="let user of users" [user]="user"></app-id-card>
+  </div>
+
+  <!-- Message si aucun utilisateur -->
+  <div *ngIf="!error && users.length === 0" class="no-data">
+    Aucun utilisateur trouvé
+  </div>
+
+  <!-- Section de débogage -->
+  <div *ngIf="showDebug" class="debug-section">
+    <h3>Données brutes:</h3>
+    <pre>{{ rawData | json }}</pre>
+  </div>
+</div>

@@ -1,0 +1,201 @@
+.id-card {
+  width: 340px;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #2D31FA, #5D8BF4);
+  }
+}
+
+.id-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .title {
+    flex: 1;
+
+    h2 {
+      margin: 0;
+      color: #2D31FA;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .id-number {
+      margin: 5px 0 0;
+      color: #666;
+      font-size: 1rem;
+    }
+  }
+}
+
+.id-card-body {
+  display: flex;
+  margin-bottom: 20px;
+
+  .photo-section {
+    margin-right: 20px;
+  }
+
+  .user-photo {
+    width: 100px;
+    height: 120px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.no-image {
+      background-color: #2D31FA;
+      color: white;
+    }
+
+    .initials {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  .info-section {
+    flex: 1;
+  }
+}
+
+.info-row {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: baseline;
+
+  .label {
+    color: #666;
+    min-width: 120px;
+    font-weight: 500;
+  }
+
+  .value {
+    color: #333;
+    flex: 1;
+    font-weight: 600;
+  }
+}
+
+.id-card-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .validity {
+    font-size: 0.85rem;
+
+    .label {
+      color: #666;
+      margin-right: 5px;
+    }
+
+    .value {
+      color: #2D31FA;
+      font-weight: 600;
+    }
+  }
+
+  .barcode {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #999;
+    letter-spacing: 1px;
+  }
+}
+
+.export-pdf-btn {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #45a049;
+  }
+
+  &:active {
+    background-color: #3d8b40;
+  }
+}
+
+@media (max-width: 768px) {
+  .id-card {
+    width: 100%;
+    max-width: 340px;
+    margin: 15px auto;
+  }
+
+  .id-card-body {
+    flex-direction: column;
+
+    .photo-section {
+      margin: 0 auto 20px;
+    }
+
+    .user-photo {
+      margin: 0 auto;
+    }
+  }
+
+  .info-row {
+    flex-direction: column;
+
+    .label {
+      margin-bottom: 2px;
+    }
+  }
+}
