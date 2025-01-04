@@ -21,13 +21,17 @@
           <a href="#"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
-      <form>
-        <input type="text" name="Name" id="name" placeholder="Full Name">
-        <input type="email" name="email" id="email" placeholder="Email Address">
-        <input type="text" name="subject" id="subject" placeholder="Subject">
-        <textarea name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
-        <button type="submit" class="btn btn-third">SEND MESSAGE</button>
+      <form (ngSubmit)="submitContactUs()" [formGroup]="contactForm">
+        <input type="text" id="Name" placeholder="Full Name" formControlName="name">
+        <input type="email" id="email" placeholder="Email Address" formControlName="email">
+        <input type="text" id="subject" placeholder="Subject" formControlName="subject">
+        <textarea id="message" cols="30" rows="5" placeholder="Message" formControlName="message"></textarea>
+        <button type="submit" class="btn btn-third" [disabled]="contactForm.invalid">SEND MESSAGE</button>
       </form>
+      <!-- Message de feedback -->
+      <div *ngIf="message" [ngClass]="{'success-message': messageType === 'success', 'error-message': messageType === 'error'}">
+        {{ message }}
+      </div>
     </div>
     <img src="/assets/imgs/p3-removebg-preview.png" alt="Contact Us" class="contact-image">
     <img src="/assets/imgs/einshtein.png" alt="Nat Reynolds" class="eishtein">

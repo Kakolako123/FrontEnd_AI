@@ -1,16 +1,18 @@
 <div class="container">
   <!-- Sidebar -->
   <div class="sidebar">
-    <h3>Catégories</h3>
+    <div class="categories-header" style="margin-bottom: 10px;">
+      <img src="assets/domicile.png" alt="home" style="margin-bottom: 20px;"/>  <!-- Icône Font Awesome ici -->
+      <h3 (click)="goToAccueil()" class="clickable-heading">Catégories</h3>
+    </div>
     <ul>
       <li *ngFor="let category of categories"
           [class.active]="category === selectedCategory"
           (click)="selectCategory(category)">
         {{ category }}
       </li>
-      <li (click)="goToAccueil()">Accueil</li>
       <li (click)="goToCardEdit()">Éditer une carte</li>
-      <li (click)="goToSalesforceTest()">Test Salesforce</li>
+      <li (click)="goToSalesforceTest()">Carte Avec AI</li>
       <li (click)="goToApiDocumentation()">Documentation API</li>
     </ul>
   </div>

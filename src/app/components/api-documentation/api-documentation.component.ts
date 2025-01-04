@@ -20,7 +20,7 @@ import axios, { AxiosRequestConfig, ResponseType } from 'axios';
 
         <div class="section-title">Generate Images</div>
         <ul>
-          <li (click)="loadExample('randomImage')">Random Image</li>
+          <li (click)="goImageDoc()">Documentation Image</li>
           <li (click)="loadExample('picsum')">Lorem Picsum</li>
           <li (click)="loadExample('unsplash')">Unsplash Random</li>
           <li (click)="loadExample('avatarImage')">Random Avatar</li>
@@ -28,14 +28,14 @@ import axios, { AxiosRequestConfig, ResponseType } from 'axios';
 
         <li class="return-link" (click)="returnToCards()">Retour aux cartes</li>
       </div>
-      
+
       <div class="main-content">
         <div class="content-section">
           <h3 class="text-center">
             <img class="einstein-image" src="assets/imgs/einshtein.png" alt="Einstein">
             Get All Random User
           </h3>
-          
+
           <div class="code-block">
             <div class="request-section">
               <div class="method-select">
@@ -47,7 +47,7 @@ import axios, { AxiosRequestConfig, ResponseType } from 'axios';
                   <option value="DELETE">DELETE</option>
                 </select>
               </div>
-              
+
               <div class="url-input">
                 <input type="text" [(ngModel)]="url" placeholder="Entrez l'URL de l'API">
               </div>
@@ -78,7 +78,7 @@ import axios, { AxiosRequestConfig, ResponseType } from 'axios';
             Generate Custom Images
             <img class="boma-image" src="assets/imgs/boma.png" alt="Boma">
           </h3>
-          
+
           <div class="code-block">
             <div class="request-section">
               <div class="prompt-input">
@@ -103,7 +103,7 @@ import axios, { AxiosRequestConfig, ResponseType } from 'axios';
                 Veuillez patienter pendant la génération de votre image...
               </div>
               <div *ngIf="!isGenerating && imageGenerated" class="success-message">
-                Image générée avec succès ! 
+                Image générée avec succès !
                 <button (click)="downloadGeneratedImage()" class="download-btn">
                   Télécharger l'image
                 </button>
@@ -559,7 +559,7 @@ export class ApiDocumentationComponent {
   private apiExamples = {
     generateId: {
       method: 'GET',
-      url: 'https://fraijaayoubmed.pythonanywhere.com/generate_id/1'
+      url: 'https://fraijaayoubmed.pythonanywhere.com/generate_id/10'
     },
     randomUser: {
       method: 'GET',
@@ -616,7 +616,7 @@ export class ApiDocumentationComponent {
     try {
       const targetUrl = this.url.startsWith('http') ? this.url : `https://${this.url}`;
       const finalUrl = this.useProxy ? `https://cors-anywhere.herokuapp.com/${targetUrl}` : targetUrl;
-      
+
       const config = {
         method: this.selectedMethod,
         url: finalUrl,
@@ -635,7 +635,7 @@ export class ApiDocumentationComponent {
     } catch (error: any) {
       console.error('Erreur complète:', error);
       this.responseStatus = `Erreur: ${error.response?.status || 'Unknown'} ${error.response?.statusText || ''}`;
-      
+
       if (error.message.includes('cors-anywhere')) {
         this.error = 'Erreur CORS: Veuillez d\'abord activer le proxy CORS en visitant https://cors-anywhere.herokuapp.com/corsdemo';
       } else if (error.message.includes('Network Error') && !this.useProxy) {
@@ -656,7 +656,7 @@ export class ApiDocumentationComponent {
     this.response = null;
 
     try {
-      const targetUrl = 'https://fastapi-flux-v37k.onrender.com/generate-image';
+      const targetUrl = 'http://13.60.236.58:8000/generate-image';
       const finalUrl = this.useProxy ? `https://cors-anywhere.herokuapp.com/${targetUrl}` : targetUrl;
 
       // Limiter la taille du prompt
@@ -691,7 +691,7 @@ export class ApiDocumentationComponent {
       });
 
       const response = await axios(config);
-      
+
       if (response.data) {
         // Vérifier la taille de la réponse
         const sizeInMB = response.data.byteLength / (1024 * 1024);
@@ -709,7 +709,7 @@ export class ApiDocumentationComponent {
       }
     } catch (error: any) {
       console.error('Erreur de génération d\'image:', error);
-      
+
       if (error.message.includes('431')) {
         this.error = 'Le prompt est trop long. Veuillez le raccourcir et réessayer.';
       } else if (error.message.includes('cors-anywhere')) {
@@ -743,24 +743,24 @@ export class ApiDocumentationComponent {
       const link = document.createElement('a');
       link.href = 'data:image/jpeg;base64,' + base64Data;
       link.download = `generated-image-${index + 1}.jpg`;
-      
+
       // Utiliser URL.createObjectURL pour une meilleure performance avec les grandes images
       const byteCharacters = atob(base64Data);
       const byteNumbers = new Array(byteCharacters.length);
-      
+
       for (let i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
-      
+
       const byteArray = new Uint8Array(byteNumbers);
       const blob = new Blob([byteArray], { type: 'image/jpeg' });
       const blobUrl = URL.createObjectURL(blob);
-      
+
       link.href = blobUrl;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
+
       // Libérer la mémoire
       setTimeout(() => {
         URL.revokeObjectURL(blobUrl);
@@ -773,5 +773,9 @@ export class ApiDocumentationComponent {
 
   downloadGeneratedImage(): void {
     this.downloadImage(this.generatedImages[0], 0);
+  }
+
+  goImageDoc() {
+    this.router.navigate(['/imageDoc']);
   }
 }

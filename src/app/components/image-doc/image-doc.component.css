@@ -1,0 +1,100 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #2D31FA;
+  padding: 20px;
+}
+
+.content-section {
+  background: white;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+h1 {
+  color: #2D31FA;
+  text-align: center;
+}
+
+.highlight {
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.step-card {
+  background: #f9f9f9;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.step-card h4 {
+  color: #2D31FA;
+  margin-bottom: 15px;
+}
+
+.step-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+button {
+  background-color: #2D31FA;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover{
+  background-color: #0a0b5b;
+}
+
+
+pre {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+ol {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.home-button {
+  margin-top: 20px;
+  background-color: #2D31FA;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.home-button:hover {
+  background-color: #0a0b5b;
+}

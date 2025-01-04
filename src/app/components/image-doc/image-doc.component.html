@@ -1,0 +1,43 @@
+<div class="content-section">
+  <h1 class="text-center">
+    Guide pour la génération d'images personnalisées
+  </h1>
+  <p>
+    Suivez ces étapes pour générer et télécharger vos images personnalisées en utilisant notre API.
+  </p>
+
+  <div class="step-card">
+    <h4>Étape 1: Entrez une description</h4>
+    <p>
+      Décrivez la personne que vous souhaitez générer en anglais. Par exemple, "a portrait of a woman with blonde hair and blue eyes"
+    </p>
+    <img src="assets/description.PNG" alt="Exemple de description" class="step-image">
+  </div>
+
+  <div class="step-card">
+    <h4>Étape 2: Spécifiez le nombre d'images</h4>
+    <p>
+      Indiquez le nombre d'images que vous souhaitez générer.
+    </p>
+    <img src="assets/images.png" alt="Exemple de nombre d'images" class="step-image">
+  </div>
+
+
+  <div class="step-card">
+    <h4>Étape 3: Générez vos images</h4>
+    <p>Cliquez sur le bouton "Générer" pour lancer le processus de génération d'images.</p>
+    <button (click)="generateImages()">Générer</button>
+  </div>
+
+
+  <div class="step-card">
+    <h4>Étape 4: Téléchargement automatique</h4>
+    <p>Les images sont automatiquement téléchargées sur votre ordinateur une fois générées.</p>
+    <img src="assets/step4.png" alt="Téléchargement automatique" class="step-image">
+
+  </div>
+  <!-- Bouton de redirection vers la page d'accueil -->
+  <div class="step-card text-center">
+    <button class="home-button" (click)="redirectToHome()">C'est compris</button>
+  </div>
+</div>

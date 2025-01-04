@@ -1,18 +1,12 @@
 <div class="container">
   <h2>Gestion des Utilisateurs Salesforce</h2>
-  
+
   <div class="actions">
     <div class="view-toggle">
-      <button 
-        [class.active]="viewMode === 'table'"
-        (click)="viewMode = 'table'" 
-        class="view-btn">
+      <button [class.active]="viewMode === 'table'" (click)="viewMode = 'table'" class="view-btn">
         📋 Vue Tableau
       </button>
-      <button 
-        [class.active]="viewMode === 'cards'"
-        (click)="viewMode = 'cards'" 
-        class="view-btn">
+      <button [class.active]="viewMode === 'cards'" (click)="viewMode = 'cards'" class="view-btn">
         💳 Vue Cartes
       </button>
     </div>
@@ -26,6 +20,7 @@
     <p>{{ errorMessage }}</p>
     <div *ngIf="detailedError">
       <pre>{{ detailedError }}</pre>
+      <pre>{{ detailedError | json }}</pre>
     </div>
   </div>
 
@@ -33,29 +28,32 @@
   <div *ngIf="!error && users.length > 0 && viewMode === 'table'" class="table-container">
     <table>
       <thead>
-        <tr>
-          <th>Photo</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>Sexe</th>
-          <th>Date de naissance</th>
-          <th>Identifiant</th>
-          <th>Adresse</th>
-          <th>Continent</th>
-          <th>Locale</th>
-          <th>Date de validité</th>
-        </tr>
+      <tr>
+        <th>Photo</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Sexe</th>
+        <th>Date de naissance</th>
+        <th>Identifiant</th>
+        <th>Adresse</th>
+        <th>Continent</th>
+        <th>Locale</th>
+        <th>Date de validité</th>
+        <th>Actions</th>
+      </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
-          <td class="user-photo">
-            <div class="photo-container" [class.no-image]="!user.Image_URL__c">
-              <img *ngIf="user.Image_URL__c" [src]="user.Image_URL__c" [alt]="user.nom__c">
-              <span *ngIf="!user.Image_URL__c" class="initials">
-                {{ getInitials(user.nom__c, user.prenom__c) }}
-              </span>
-            </div>
-          </td>
+      <tr *ngFor="let user of users">
+        <td class="user-photo">
+          <div class="photo-container" [class.no-image]="!user.Image_URL__c">
+            <img *ngIf="user.Image_URL__c" [src]="user.Image_URL__c" [alt]="user.nom__c">
+            <span *ngIf="!user.Image_URL__c" class="initials">
+                                {{ getInitials(user.nom__c, user.prenom__c) }}
+                            </span>
+          </div>
+        </td>
+
+        <ng-container *ngIf="editingUserId !== user.Id">
           <td>{{ user.nom__c }}</td>
           <td>{{ user.prenom__c }}</td>
           <td>{{ user.sexe__c }}</td>
@@ -65,7 +63,77 @@
           <td>{{ user.continent__c }}</td>
           <td>{{ user.locale__c }}</td>
           <td>{{ formatDate(user.date_validite__c) }}</td>
-        </tr>
+          <td class="actions-cell">
+            <div class="inline-actions">
+              <button (click)="startEdit(user)" title="Modifier">
+                <span class="material-icons edit-icon">edit</span>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container *ngIf="editingUserId === user.Id">
+          <td >
+            <div class="edit-form">
+              <input type="text" [(ngModel)]="editedUser!.nom__c" placeholder="Nom">
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <input type="text" [(ngModel)]="editedUser!.prenom__c" placeholder="Prénom">
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <select [(ngModel)]="editedUser!.sexe__c">
+                <option value="Masculin">Masculin</option>
+                <option value="Féminin">Féminin</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <input type="date" [(ngModel)]="editedUser!.date_naissance__c">
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <input type="text" [(ngModel)]="editedUser!.identifiant__c" placeholder="Identifiant">
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <input type="text" [(ngModel)]="editedUser!.adresse__c" placeholder="Adresse">
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <input type="text" [(ngModel)]="editedUser!.continent__c" placeholder="Continent">
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <input type="text" [(ngModel)]="editedUser!.locale__c" placeholder="Locale">
+            </div>
+          </td>
+          <td>
+            <div class="edit-form">
+              <input type="date" [(ngModel)]="editedUser!.date_validite__c">
+            </div>
+          </td>
+          <td class="actions-cell">
+            <div class="inline-actions">
+              <button (click)="saveEdit(user)" title="Enregistrer">
+                <span class="material-icons save-icon">save</span>
+              </button>
+              <button (click)="cancelEdit()" title="Annuler">
+                <span class="material-icons cancel-icon">cancel</span>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -74,9 +142,16 @@
   <div *ngIf="!error && users.length > 0 && viewMode === 'cards'" class="cards-container">
     <app-id-card *ngFor="let user of users" [user]="user"></app-id-card>
   </div>
+  <!-- Section de generation d'images -->
+  <div *ngIf="!error && getUsersWithoutImage().length > 0" class="generate-image-section">
+    <h3>Génération d'images:</h3>
+    <button (click)="generateImage()" [disabled]="generatingImage" class="action-btn">
+      {{ generatingImage ? 'Génération en cours...' : 'Générer une image' }}
+    </button>
+  </div>
 
   <!-- Message si aucun utilisateur -->
-  <div *ngIf="!error && users.length === 0" class="no-data">
+  <div *ngIf="!error && users.length === 0 && getUsersWithoutImage().length === 0" class="no-data">
     Aucun utilisateur trouvé
   </div>
 

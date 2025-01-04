@@ -7,7 +7,7 @@ import { Observable, from } from 'rxjs';
 })
 export class SalesforceService {
   private baseUrl = 'https://ensa37-dev-ed.develop.my.salesforce.com/services/apexrest/users';
-  private accessToken = '00DWU00000A5RJZ!AQEAQKwNhFJoYkZQBvIuI9EuAnKtwHWFJRVi95wjFpN83vcQxF5epMEIP0yayL0qrA21yApDhKcjcV7mi3OQZI4gRWwgt2hq';
+  private accessToken = '00DWU00000A5RJZ!AQEAQB79Bmo2Fbb9_tW9Aachh5OwoLO16vkKe_efozeiFW7LogV4XmLkOCo4bjaosfFUpERyxKdeaTJW2Mngd_8c6lkPV7_L';
 
   constructor() { }
 
@@ -87,6 +87,24 @@ export class SalesforceService {
       return response.data;
     } catch (error) {
       console.error('Erreur lors de la suppression de l\'utilisateur:', error);
+      throw error;
+    }
+  }
+  generateImage(userId: string) {
+    return from(this.generateImageAsync(userId));
+  }
+
+  private async generateImageAsync(userId: string) {
+    try {
+      const response = await axios.post(`${this.baseUrl}/${userId}`,{}, {
+        headers: {
+          'Authorization': `Bearer ${this.accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Erreur lors de la génération de l\'image:', error);
       throw error;
     }
   }

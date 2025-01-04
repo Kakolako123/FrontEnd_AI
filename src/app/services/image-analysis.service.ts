@@ -27,10 +27,10 @@ export class ImageAnalysisService {
 
       // Analyser l'image
       const result = await this.worker.recognize(imageUrl);
-      
+
       // Analyser le texte pour trouver les champs
       const fields = this.extractFields(result.data.text);
-      
+
       return {
         success: true,
         fields: fields
@@ -47,12 +47,12 @@ export class ImageAnalysisService {
   private extractFields(text: string): any {
     // Convertir le texte en minuscules pour faciliter la recherche
     const lowerText = text.toLowerCase();
-    
+
     const fields = {
-      photoPosition: null,
-      nameField: null,
-      idField: null,
-      birthDateField: null
+      photoPosition: null as { x: string; y: string; width: string; height: string } | null,
+      nameField: null as { label: string; position: number; text: string } | null,
+      idField: null as { label: string; position: number; text: string } | null,
+      birthDateField: null as { label: string; position: number; text: string } | null
     };
 
     // Rechercher les mots clés communs dans les cartes d'identité
@@ -66,7 +66,7 @@ export class ImageAnalysisService {
           text: line.trim()
         };
       }
-      
+
       // Champ ID
       if (line.includes('id') || line.includes('n°') || line.includes('numero')) {
         fields.idField = {
@@ -75,7 +75,7 @@ export class ImageAnalysisService {
           text: line.trim()
         };
       }
-      
+
       // Champ date de naissance
       if (line.includes('naissance') || line.includes('né') || line.includes('birth')) {
         fields.birthDateField = {
@@ -96,6 +96,7 @@ export class ImageAnalysisService {
 
     return fields;
   }
+
 
   async terminate() {
     if (this.worker && this.isInitialized) {
