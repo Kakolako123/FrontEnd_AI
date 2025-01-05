@@ -7,7 +7,7 @@ import { Observable, from } from 'rxjs';
 })
 export class SalesforceService {
   private baseUrl = 'https://ensa37-dev-ed.develop.my.salesforce.com/services/apexrest/users';
-  private accessToken = '00DWU00000A5RJZ!AQEAQEvN8ErAWPlROJ0zKDnPkgWGqv.Lz7s5DbmVi4lfwOU9HN0UMO9StwawALJKGTFiG87hjQuz9BBgytt7wG5kAxf1NLd.';
+  private accessToken = '00DWU00000A5RJZ!AQEAQEkuFkc.yjw6vcO7sSJ7jX__51cUW1WNKPAV5MOrz2u9RIUhNvqUw.FRZVEwTCO6AMRi.Yv39l0O0MD20WqJcoa__6Kn';
 
   constructor() { }
 
