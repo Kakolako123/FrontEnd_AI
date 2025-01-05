@@ -1,43 +1,38 @@
-<!-- Contact Section Start -->
+<!-- Section Contact Start -->
 <section id="contact">
   <div class="container">
     <div class="contact-content">
       <div class="contact-info">
         <div>
-          <h3>ADDRESS</h3>
-          <p><i class="fa-solid fa-location-dot"></i> Hosary Mosque, 6 October, Egypt</p>
-          <p><i class="fa-solid fa-phone"></i> Phone: 123456789</p>
-          <p><i class="fa-regular fa-envelope"></i> aaaagmail.com</p>
-        </div>
+          <h3>ADRESSE</h3>
+          <p><i class="fa-solid fa-location-dot"></i> Gueliz, Maroc</p>
+          <p><i class="fa-solid fa-phone"></i> Téléphone : 0710070899</p>
+          <p><i class="fa-regular fa-envelope"></i> fake.cart gmail.com</p>
+        </div>        
         <div>
-          <h3>WORKING HOURS</h3>
-          <p>8:00 am to 11:00 pm on Weekdays</p>
-          <p>11:00 am to 1:00 Am on Weekends</p>
-        </div>
-        <div>
-          <h3>FOLLOW US</h3>
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <h3>HEURES D'OUVERTURE</h3>
+          <p>8h00 à 23h00 en semaine</p>
+          <p>11h00 à 1h00 le week-end</p>
         </div>
       </div>
       <form (ngSubmit)="submitContactUs()" [formGroup]="contactForm">
-        <input type="text" id="Name" placeholder="Full Name" formControlName="name">
-        <input type="email" id="email" placeholder="Email Address" formControlName="email">
-        <input type="text" id="subject" placeholder="Subject" formControlName="subject">
+        <input type="text" id="Name" placeholder="Nom Complet" formControlName="name">
+        <input type="email" id="email" placeholder="Adresse Email" formControlName="email">
+        <input type="text" id="subject" placeholder="Sujet" formControlName="subject">
         <textarea id="message" cols="30" rows="5" placeholder="Message" formControlName="message"></textarea>
-        <button type="submit" class="btn btn-third" [disabled]="contactForm.invalid">SEND MESSAGE</button>
+        <button type="submit" class="btn btn-third" [disabled]="contactForm.invalid">ENVOYER LE MESSAGE</button>
       </form>
       <!-- Message de feedback -->
       <div *ngIf="message" [ngClass]="{'success-message': messageType === 'success', 'error-message': messageType === 'error'}">
         {{ message }}
       </div>
     </div>
-    <img src="/assets/imgs/p3-removebg-preview.png" alt="Contact Us" class="contact-image">
+    <img src="/assets/imgs/p3-removebg-preview.png" alt="Contactez-nous" class="contact-image">
     <img src="/assets/imgs/einshtein.png" alt="Nat Reynolds" class="eishtein">
   </div>
 </section>
-<!-- Contact Section End -->
+<!-- Section Contact End -->
+
 <footer id="footer">
-  <p>Copyright &copy; 2024 All rights reserved | made by <b> GI3</b></p>
+  <p>Copyright &copy; 2025 Tous droits réservés | créé par <b> GI3</b></p>
 </footer>

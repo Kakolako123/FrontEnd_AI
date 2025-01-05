@@ -9,114 +9,115 @@ import axios, { AxiosRequestConfig, ResponseType } from 'axios';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="api-doc-wrapper">
-      <div class="sidebar">
-        <div class="section-title">Get Random Users</div>
-        <ul>
-          <li (click)="loadExample('generateId')">Generate ID API</li>
-          <li (click)="loadExample('randomUser')">Random User API</li>
-          <li (click)="loadExample('jsonPlaceholder')">JSONPlaceholder API</li>
-        </ul>
+<div class="api-doc-wrapper">
+  <div class="sidebar">
+    <div class="section-title">Obtenez des utilisateurs aléatoires</div>
+    <ul>
+      <li (click)="loadExample('generateId')">Générer l'ID API</li>
+      <li (click)="loadExample('randomUser')">API Utilisateur Aléatoire</li>
+      <li (click)="loadExample('jsonPlaceholder')">API JSONPlaceholder</li>
+    </ul>
 
-        <div class="section-title">Generate Images</div>
-        <ul>
-          <li (click)="goImageDoc()">Documentation Image</li>
-          <li (click)="loadExample('picsum')">Lorem Picsum</li>
-          <li (click)="loadExample('unsplash')">Unsplash Random</li>
-          <li (click)="loadExample('avatarImage')">Random Avatar</li>
-        </ul>
+    <div class="section-title">Générer des images</div>
+    <ul>
+      <li (click)="goImageDoc()">Documentation Image</li>
+      <li (click)="loadExample('picsum')">Lorem Picsum</li>
+      <li (click)="loadExample('unsplash')">Unsplash Aléatoire</li>
+      <li (click)="loadExample('avatarImage')">Avatar Aléatoire</li>
+    </ul>
 
-        <li class="return-link" (click)="returnToCards()">Retour aux cartes</li>
-      </div>
+    <li class="return-link" (click)="returnToCards()">Retour aux cartes</li>
+  </div>
 
-      <div class="main-content">
-        <div class="content-section">
-          <h3 class="text-center">
-            <img class="einstein-image" src="assets/imgs/einshtein.png" alt="Einstein">
-            Get All Random User
-          </h3>
+  <div class="main-content">
+    <div class="content-section">
+      <h3 class="text-center">
+        <img class="einstein-image" src="assets/imgs/einshtein.png" alt="Einstein">
+        Obtenez tous les utilisateurs aléatoires
+      </h3>
 
-          <div class="code-block">
-            <div class="request-section">
-              <div class="method-select">
-                <select [(ngModel)]="selectedMethod">
-                  <option value="GET">GET</option>
-                  <option value="POST">POST</option>
-                  <option value="PUT">PUT</option>
-                  <option value="PATCH">PATCH</option>
-                  <option value="DELETE">DELETE</option>
-                </select>
-              </div>
-
-              <div class="url-input">
-                <input type="text" [(ngModel)]="url" placeholder="Entrez l'URL de l'API">
-              </div>
-
-              <button (click)="sendRequest()" [disabled]="isLoading" class="send-btn">
-                {{ isLoading ? 'Chargement...' : 'Envoyer' }}
-              </button>
-            </div>
-
-            <div class="buttons-section">
-              <button (click)="activateProxy()" class="activate-proxy">
-                Activer CORS Proxy
-              </button>
-            </div>
-
-            <div class="body-section" *ngIf="selectedMethod !== 'GET'">
-              <textarea [(ngModel)]="requestBody" placeholder="Entrez le corps de la requête (JSON)"></textarea>
-            </div>
-
-            <div class="response-section" *ngIf="response">
-              <pre>{{ response | json }}</pre>
-            </div>
+      <div class="code-block">
+        <div class="request-section">
+          <div class="method-select">
+            <select [(ngModel)]="selectedMethod">
+              <option value="GET">GET</option>
+              <option value="POST">POST</option>
+              <option value="PUT">PUT</option>
+              <option value="PATCH">PATCH</option>
+              <option value="DELETE">DELETE</option>
+            </select>
           </div>
+
+          <div class="url-input">
+            <input type="text" [(ngModel)]="url" placeholder="Entrez l'URL de l'API">
+          </div>
+
+          <button (click)="sendRequest()" [disabled]="isLoading" class="send-btn">
+            {{ isLoading ? 'Chargement...' : 'Envoyer' }}
+          </button>
         </div>
 
-        <div class="content-section image-generation">
-          <h3 class="text-center">
-            Generate Custom Images
-            <img class="boma-image" src="assets/imgs/boma.png" alt="Boma">
-          </h3>
+        <div class="buttons-section">
+          <button (click)="activateProxy()" class="activate-proxy">
+            Activer le Proxy CORS
+          </button>
+        </div>
 
-          <div class="code-block">
-            <div class="request-section">
-              <div class="prompt-input">
-                <input type="text" [(ngModel)]="imagePrompt" placeholder="Décrivez l'image que vous souhaitez générer">
-              </div>
+        <div class="body-section" *ngIf="selectedMethod !== 'GET'">
+          <textarea [(ngModel)]="requestBody" placeholder="Entrez le corps de la requête (JSON)"></textarea>
+        </div>
 
-              <div class="upsampling-select">
-                <select [(ngModel)]="imageUpsampling">
-                  <option value="1">1 Image</option>
-                  <option value="3">3 Images</option>
-                  <option value="5">5 Images</option>
-                </select>
-              </div>
-
-              <button (click)="generateImage()" [disabled]="isGenerating" class="generate-btn">
-                {{ isGenerating ? 'Génération en cours...' : 'Générer' }}
-              </button>
-            </div>
-
-            <div class="status-section">
-              <div *ngIf="isGenerating" class="loading-message">
-                Veuillez patienter pendant la génération de votre image...
-              </div>
-              <div *ngIf="!isGenerating && imageGenerated" class="success-message">
-                Image générée avec succès !
-                <button (click)="downloadGeneratedImage()" class="download-btn">
-                  Télécharger l'image
-                </button>
-              </div>
-            </div>
-
-            <div class="error-section" *ngIf="error">
-              <div class="error-message">{{ error }}</div>
-            </div>
-          </div>
+        <div class="response-section" *ngIf="response">
+          <pre>{{ response | json }}</pre>
         </div>
       </div>
     </div>
+
+    <div class="content-section image-generation">
+      <h3 class="text-center">
+        Générer des images personnalisées
+        <img class="boma-image" src="assets/imgs/boma.png" alt="Boma">
+      </h3>
+
+      <div class="code-block">
+        <div class="request-section">
+          <div class="prompt-input">
+            <input type="text" [(ngModel)]="imagePrompt" placeholder="Décrivez l'image que vous souhaitez générer">
+          </div>
+
+          <div class="upsampling-select">
+            <select [(ngModel)]="imageUpsampling">
+              <option value="1">1 Image</option>
+              <option value="3">3 Images</option>
+              <option value="5">5 Images</option>
+            </select>
+          </div>
+
+          <button (click)="generateImage()" [disabled]="isGenerating" class="generate-btn">
+            {{ isGenerating ? 'Génération en cours...' : 'Générer' }}
+          </button>
+        </div>
+
+        <div class="status-section">
+          <div *ngIf="isGenerating" class="loading-message">
+            Veuillez patienter pendant la génération de votre image...
+          </div>
+          <div *ngIf="!isGenerating && imageGenerated" class="success-message">
+            Image générée avec succès !
+            <button (click)="downloadGeneratedImage()" class="download-btn">
+              Télécharger l'image
+            </button>
+          </div>
+        </div>
+
+        <div class="error-section" *ngIf="error">
+          <div class="error-message">{{ error }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   `,
   styles: [`
     .api-doc-wrapper {

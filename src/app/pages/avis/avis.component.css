@@ -10,7 +10,7 @@
 .robot{
   position: absolute;
   right: -10px;
-  top: 382%;
+  top: 392%;
   transform: translateY(-50%);
   max-width: 30%; /* Ajustez selon vos besoins */
   height: auto;

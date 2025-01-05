@@ -19,37 +19,39 @@ export class SideBarComponent {
   selectedCategory: string = 'All';
 
   categories: string[] = [
-    'All',
-    'School ID Cards',
-    'Medical ID Cards',
-    'Employee Badges'
+    'Tout',
+    'Cartes d\'Identité Scolaires',
+    'Cartes d\'Identité Médicales',
+    'Badges d\'Employés'
   ];
 
   allDesigns: Design[] = [
     // School ID Cards
-    { name: 'Student ID Card', image: 'assets/imgs/c1.1.PNG', category: 'School ID Cards' },
-    { name: 'Student ID Card', image: 'assets/imgs/c2.1.PNG', category: 'School ID Cards' },
-    { name: 'Student ID Card', image: 'assets/imgs/c10.1.PNG', category: 'School ID Cards' },
-    { name: 'Student ID Card', image: 'assets/imgs/c11.1.PNG', category: 'School ID Cards' },
-    { name: 'Student ID Card', image: 'assets/imgs/c12.1.PNG', category: 'School ID Cards' },
+    { name: 'Carte d\'Identité Étudiant', image: 'assets/imgs/c1.1.PNG', category: 'Cartes d\'Identité Scolaires' },
+    { name: 'Carte d\'Identité Étudiant', image: 'assets/imgs/c2.1.PNG', category: 'Cartes d\'Identité Scolaires' },
+    { name: 'Carte d\'Identité Étudiant', image: 'assets/imgs/c10.1.PNG', category: 'Cartes d\'Identité Scolaires' },
+    { name: 'Carte d\'Identité Étudiant', image: 'assets/imgs/c11.1.PNG', category: 'Cartes d\'Identité Scolaires' },
+    { name: 'Carte d\'Identité Étudiant', image: 'assets/imgs/c12.1.PNG', category: 'Cartes d\'Identité Scolaires' },
+    
 
-    // Medical ID Cards
-    { name: 'Nurse ID Card', image: 'assets/imgs/c6.1.PNG', category: 'Medical ID Cards' },
-    { name: 'Resident Physician ID', image: 'assets/imgs/c13.1.PNG', category: 'Medical ID Cards' },
-    { name: 'Surgeon ID Badge', image: 'assets/imgs/c14.1.PNG', category: 'Medical ID Cards' },
+    // Cartes d'Identité Médicales
+    { name: 'Carte d\'Identité Infirmière', image: 'assets/imgs/c6.1.PNG', category: 'Cartes d\'Identité Médicales' },
+    { name: 'Carte d\'Identité Médecin Résident', image: 'assets/imgs/c13.1.PNG', category: 'Cartes d\'Identité Médicales' },
+    { name: 'Badge d\'Identité Chirurgien', image: 'assets/imgs/c14.1.PNG', category: 'Cartes d\'Identité Médicales' },
 
-    // Employee Badges
-    { name: 'Manager ID Card', image: 'assets/imgs/c3.1.PNG', category: 'Employee Badges' },
-    { name: 'Manager ID Badge', image: 'assets/imgs/c4.1.PNG', category: 'Employee Badges' },
-    { name: 'Director ID Card', image: 'assets/imgs/c5.1.PNG', category: 'Employee Badges' },
-    { name: 'Project Manager ID', image: 'assets/imgs/c7.1.PNG', category: 'Employee Badges' },
-    { name: 'Marketing ID Badge', image: 'assets/imgs/c8.1.PNG', category: 'Employee Badges' }
+    // Badges d'Employés
+    { name: 'Carte d\'Identité Manager', image: 'assets/imgs/c3.1.PNG', category: 'Badges d\'Employés' },
+    { name: 'Badge d\'Identité Manager', image: 'assets/imgs/c4.1.PNG', category: 'Badges d\'Employés' },
+    { name: 'Carte d\'Identité Directeur', image: 'assets/imgs/c5.1.PNG', category: 'Badges d\'Employés' },
+    { name: 'Carte d\'Identité Chef de Projet', image: 'assets/imgs/c7.1.PNG', category: 'Badges d\'Employés' },
+    { name: 'Badge d\'Identité Marketing', image: 'assets/imgs/c8.1.PNG', category: 'Badges d\'Employés' },
+
   ];
 
   constructor(private router: Router) {}
 
   get filteredDesigns() {
-    if (this.selectedCategory === 'All') {
+    if (this.selectedCategory === 'Tout') {
       return this.allDesigns;
     }
     return this.allDesigns.filter(design => design.category === this.selectedCategory);
