@@ -30,7 +30,7 @@ export class ContactComponent {
       const formData = this.contactForm.value;
       const apiUrl = 'https://ensa37-dev-ed.develop.my.salesforce.com/services/apexrest/contactUs';  // Remplacez par l'URL de votre API Salesforce
 
-      const headers = new HttpHeaders().set('Authorization', 'Bearer 00DWU00000A5RJZ!AQEAQB79Bmo2Fbb9_tW9Aachh5OwoLO16vkKe_efozeiFW7LogV4XmLkOCo4bjaosfFUpERyxKdeaTJW2Mngd_8c6lkPV7_L');  // Jeton d'accès Salesforce
+      const headers = new HttpHeaders().set('Authorization', 'Bearer 00DWU00000A5RJZ!AQEAQPwfEZAxDkN7DCovQLJz8TJSA7rtpKULG314z4pm9zNr_0HA45bNZtb977t6kmgl4_nxyGhS7ReCsdmN4TLsX7KI41aT');  // Jeton d'accès Salesforce
 
       // Envoi de la requête POST avec les données du formulaire
       this.http.post(apiUrl, formData, { headers }).subscribe(
